@@ -91,21 +91,11 @@
     NSArray *persons = [self.dbManager queryAllPersons];
     if (persons) {
         FUDPersonsViewController *personsVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FUDPersonsViewController"];
-        personsVC.persons = persons;
+        personsVC.persons = persons.mutableCopy;
         [self.navigationController pushViewController:personsVC animated:YES];
         self.messageLabel.text = @"查询人员信息成功！";
     } else {
         self.messageLabel.text = @"查询人员信息失败！";
-    }
-}
-
-- (IBAction)deleteButtonAction:(id)sender {
-    NSInteger personID = self.personIDField.text.integerValue;
-    
-    if ([self.dbManager deletePerson:personID]) {
-        self.messageLabel.text = @"删除 Person 成功！";
-    } else {
-        self.messageLabel.text = @"删除 Person 失败！";
     }
 }
 
@@ -114,6 +104,17 @@
     [self.personIDField resignFirstResponder];
     [self.ageField resignFirstResponder];
     [self.cityIDField resignFirstResponder];
+}
+
+- (IBAction)gotoCityListPage:(id)sender {
+    NSArray *cities = [self.dbManager queryAllCities];
+    if (cities) {
+        FUDPersonsViewController *citiesVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FUDPersonsViewController"];
+        citiesVC.cities = cities;
+        [self.navigationController pushViewController:citiesVC animated:YES];
+    } else {
+        self.messageLabel.text = @"查询城市列表失败！";
+    }
 }
 
 @end

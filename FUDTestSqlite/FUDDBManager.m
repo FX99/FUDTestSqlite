@@ -31,6 +31,10 @@ static NSString * const kPersonTableDefault = @"t_personTableDefault";
 
 @implementation FUDDBManager
 
++ (instancetype)defaultManager {
+    return [[FUDDBManager alloc] init];
+}
+
 - (instancetype)initWithName:(nonnull NSString *)name {
     self = [super init];
     if (self) {
@@ -74,6 +78,28 @@ static NSString * const kPersonTableDefault = @"t_personTableDefault";
         }
         
         return city;
+    } else {
+        return nil;
+    }
+}
+
+- (NSArray<FUDCity *> *)queryAllCities {
+    NSString *sql = [NSString stringWithFormat:@"select * from %@", kCityTableDefault];
+    sqlite3_stmt *stmt = NULL;
+    
+    int result = sqlite3_prepare_v2(_db, sql.UTF8String, -1, &stmt, NULL);
+    if (result == SQLITE_OK) {
+        NSMutableArray<FUDCity *> *cities = [NSMutableArray array];
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            FUDCity *city = [FUDCity new];
+            city.cityID = sqlite3_column_int(stmt, 0);
+            city.name = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 1)];
+            if (city.name.length == 0) {
+                city.name = @"未知";
+            }
+            [cities addObject:city];
+        }
+        return cities;
     } else {
         return nil;
     }

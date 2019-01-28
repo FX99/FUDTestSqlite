@@ -15,11 +15,13 @@
 
 @property (nonatomic, copy, readonly) NSString *name;
 
++ (instancetype)defaultManager;
 - (instancetype)initWithName:(nonnull NSString *)name;
 
 - (BOOL)createCityTable;
 - (BOOL)addCity:(FUDCity *)city;
 - (FUDCity *)queryCity:(NSInteger)cityID;
+- (NSArray<FUDCity *> *)queryAllCities;
 
 - (BOOL)createPersonTable;
 - (BOOL)addPerson:(FUDPerson *)person;

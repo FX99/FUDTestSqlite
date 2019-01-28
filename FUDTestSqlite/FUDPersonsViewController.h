@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FUDPersonsViewController : UIViewController
 
-@property (nonatomic, copy) NSArray<FUDPerson *> *persons;
+@property (nonatomic, strong) NSMutableArray<FUDPerson *> *persons;
 @property (nonatomic, copy) NSArray<FUDCity *> *cities;
 
 @end

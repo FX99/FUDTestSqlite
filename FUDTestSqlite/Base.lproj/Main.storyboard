@@ -93,17 +93,8 @@
                                     <action selector="retrieveButtonAction:" destination="yQK-1D-lZP" eventType="touchUpInside" id="fWX-TX-Q1I"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGB-66-POb">
-                                <rect key="frame" x="16" y="488.5" width="343" height="30"/>
-                                <color key="backgroundColor" red="0.93333333330000001" green="0.2666666667" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="删除"/>
-                                <connections>
-                                    <action selector="deleteButtonAction:" destination="yQK-1D-lZP" eventType="touchUpInside" id="w4Q-hx-gcV"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilV-Pe-y68">
-                                <rect key="frame" x="16" y="548.5" width="343" height="18"/>
+                                <rect key="frame" x="16" y="503.5" width="343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.4518506927" green="0.55320044599999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -119,10 +110,9 @@
                             <constraint firstItem="7kE-3R-olH" firstAttribute="top" secondItem="RQ2-ec-6nD" secondAttribute="bottom" constant="25" id="D4d-G1-ocZ"/>
                             <constraint firstItem="xqH-1X-wv0" firstAttribute="trailing" secondItem="7kE-3R-olH" secondAttribute="trailing" constant="16" id="DFT-Q8-LcR"/>
                             <constraint firstItem="xqH-1X-wv0" firstAttribute="trailing" secondItem="7Q9-Pl-wCf" secondAttribute="trailing" constant="16" id="DZ7-o1-Qtb"/>
-                            <constraint firstItem="rGB-66-POb" firstAttribute="top" secondItem="7kE-3R-olH" secondAttribute="bottom" constant="25" id="KWR-5F-Ly6"/>
                             <constraint firstItem="d49-Nc-pDR" firstAttribute="top" secondItem="IZO-0k-cv4" secondAttribute="bottom" constant="19" id="Knz-Ee-EzR"/>
                             <constraint firstItem="RQ2-ec-6nD" firstAttribute="leading" secondItem="xqH-1X-wv0" secondAttribute="leading" constant="16" id="M0h-Ln-6ii"/>
-                            <constraint firstItem="rGB-66-POb" firstAttribute="leading" secondItem="xqH-1X-wv0" secondAttribute="leading" constant="16" id="M45-KY-3Hf"/>
+                            <constraint firstItem="ilV-Pe-y68" firstAttribute="top" secondItem="7kE-3R-olH" secondAttribute="bottom" constant="40" id="OWa-Tj-GFY"/>
                             <constraint firstItem="z2u-p1-K3M" firstAttribute="leading" secondItem="xqH-1X-wv0" secondAttribute="leading" constant="16" id="Qdj-GF-mXx"/>
                             <constraint firstItem="IZO-0k-cv4" firstAttribute="leading" secondItem="xqH-1X-wv0" secondAttribute="leading" constant="16" id="UF2-ME-7go"/>
                             <constraint firstItem="7Q9-Pl-wCf" firstAttribute="leading" secondItem="IZO-0k-cv4" secondAttribute="trailing" constant="25" id="Yrd-4s-kb7"/>
@@ -131,9 +121,7 @@
                             <constraint firstItem="cSB-aB-J4f" firstAttribute="leading" secondItem="g3a-i9-Qno" secondAttribute="trailing" constant="25" id="ZyV-nc-hkj"/>
                             <constraint firstItem="d49-Nc-pDR" firstAttribute="leading" secondItem="xqH-1X-wv0" secondAttribute="leading" constant="16" id="bRB-Gg-TiS"/>
                             <constraint firstItem="7C2-tK-1qk" firstAttribute="centerY" secondItem="3x4-Ca-adL" secondAttribute="centerY" id="dZH-Ps-WCe"/>
-                            <constraint firstItem="ilV-Pe-y68" firstAttribute="top" secondItem="rGB-66-POb" secondAttribute="bottom" constant="30" id="f0V-Ub-3fx"/>
                             <constraint firstItem="xqH-1X-wv0" firstAttribute="trailing" secondItem="7C2-tK-1qk" secondAttribute="trailing" constant="16" id="g0G-rP-PwR"/>
-                            <constraint firstItem="xqH-1X-wv0" firstAttribute="trailing" secondItem="rGB-66-POb" secondAttribute="trailing" constant="16" id="gtr-UH-8PU"/>
                             <constraint firstItem="ilV-Pe-y68" firstAttribute="leading" secondItem="xqH-1X-wv0" secondAttribute="leading" constant="16" id="iD6-nb-Guy"/>
                             <constraint firstItem="T7U-Tm-cQL" firstAttribute="leading" secondItem="d49-Nc-pDR" secondAttribute="trailing" constant="8" id="iJk-sd-6aa"/>
                             <constraint firstItem="xqH-1X-wv0" firstAttribute="trailing" secondItem="RQ2-ec-6nD" secondAttribute="trailing" constant="16" id="igd-w0-gOF"/>
@@ -149,7 +137,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xqH-1X-wv0"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Psz-mt-K7S"/>
+                    <navigationItem key="navigationItem" id="Psz-mt-K7S">
+                        <barButtonItem key="rightBarButtonItem" title="城市列表" id="LxD-ma-ah9">
+                            <connections>
+                                <action selector="gotoCityListPage:" destination="yQK-1D-lZP" id="qr4-yR-gwj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="ageField" destination="7Q9-Pl-wCf" id="J3W-mB-IgH"/>
                         <outlet property="cityIDField" destination="T7U-Tm-cQL" id="CP3-ME-lJX"/>

@@ -7,12 +7,14 @@
 //
 
 #import "FUDPersonsViewController.h"
+#import "FUDDBManager.h"
 #import "FUDPerson.h"
 #import "FUDCity.h"
 
 @interface FUDPersonsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) FUDDBManager *dbManager;
 
 @end
 
@@ -21,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.dbManager = [FUDDBManager defaultManager];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -47,6 +49,25 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.persons) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            FUDPerson *person = self.persons[indexPath.row];
+            [self.dbManager deletePerson:person.ID];
+            [self.persons removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        }
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.persons) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end
